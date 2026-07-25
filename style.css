@@ -74,6 +74,46 @@ body::before {
   opacity: 0.85;
 }
 
+/* Rotating Background Skaia Orb */
+.skaiaBgOrb {
+  position: fixed;
+  bottom: -40px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  user-select: none;
+  animation: skaiaRotate 120s linear infinite;
+  filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.3));
+}
+
+@keyframes skaiaRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skaiaBgOrb {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .skaiaBgOrb {
+    width: 200px;
+    height: 200px;
+    bottom: -20px;
+    right: -20px;
+    opacity: 0.25;
+  }
+}
+
 /* Image Preloader */
 body::after {
   position: absolute;
@@ -737,9 +777,12 @@ body::after {
   .opGrid {
     grid-template-columns: repeat(4, 81px);
     grid-template-rows: 68px;
+    margin-left: -6px;
   }
   .eqSign {
-    transform: rotate(90deg);
     margin: 8px 0;
+  }
+  .alchemizeRow {
+    margin-left: -6px;
   }
 }
