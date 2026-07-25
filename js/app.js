@@ -11,7 +11,49 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Initialize Portfolio Return Banner
   initPortfolioBanner();
 
-  // 2. Initialize Captchalogue Cards with dedicated suggestions containers
+  // 2. DOM Elements & Helpers Initialization
+  const equalsButton = document.getElementById("EqualsButton");
+  const resultTitleEl = document.getElementById("resultItemTitle");
+  const resultCodeEl = document.getElementById("resultItemCode");
+  const copyBtn = document.getElementById("copyResultBtn");
+
+  // Operator Radio Buttons
+  const opButtons = {
+    AND: document.getElementById("AndButton"),
+    OR: document.getElementById("OrButton"),
+    XOR: document.getElementById("XorButton"),
+    ABJ: document.getElementById("AbjButton")
+  };
+
+  let currentOperator = "AND";
+  if (opButtons.AND) {
+    opButtons.AND.checked = true;
+  }
+
+  function updateResultMeta(code, opKey) {
+    const item = getItemByCode(code);
+    if (resultTitleEl) {
+      resultTitleEl.textContent = item ? item.title : "Custom Alchemized Creation";
+    }
+    if (resultCodeEl) {
+      resultCodeEl.textContent = `Code: [${code}] (${opKey} Alchemy)`;
+    }
+  }
+
+  // Set up operator radio click listeners
+  Object.keys(opButtons).forEach(opKey => {
+    const radio = opButtons[opKey];
+    if (radio) {
+      radio.addEventListener("change", () => {
+        if (radio.checked) {
+          currentOperator = opKey;
+          updateOperatorState();
+          clearOutput();
+        }
+      });
+    }
+  });
+
   function clearOutput() {
     if (card3) {
       card3.setBits(new Array(48).fill(0), "");
@@ -24,6 +66,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function isCodeComplete(card) {
+    if (!card) return false;
+    if (typeof card.isComplete === "function") {
+      return card.isComplete();
+    }
+    const val = card.inputElement ? card.inputElement.value.trim() : (card.code || "");
+    return val.length === 8;
+  }
+
+  function updateOperatorState() {
+    if (!equalsButton) return;
+    const canAlchemize = isCodeComplete(card1) && isCodeComplete(card2);
+
+    if (canAlchemize) {
+      equalsButton.src = "img/btn/alchemize-00.png";
+      equalsButton.classList.remove("disabled");
+      equalsButton.setAttribute("title", `Click to Alchemize using ${currentOperator}`);
+      equalsButton.setAttribute("tabindex", "0");
+    } else {
+      equalsButton.src = "img/btn/alchemize-02.png";
+      equalsButton.classList.add("disabled");
+      equalsButton.setAttribute("title", "Enter full 8-character codes on both cards to Alchemize");
+      equalsButton.setAttribute("tabindex", "-1");
+    }
+  }
+
+  // 3. Initialize Captchalogue Cards
   const card1 = new CaptchaCard({
     id: "1",
     cardElement: document.getElementById("Card1"),
@@ -57,72 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Default initial values
   card1.setCode("nZ7Un6BI"); // Claw Hammer
   card2.setCode("DQMmJLeK"); // Green Slime Ghost Pogo
-
-  // Operator Radio Buttons
-  const opButtons = {
-    AND: document.getElementById("AndButton"),
-    OR: document.getElementById("OrButton"),
-    XOR: document.getElementById("XorButton"),
-    ABJ: document.getElementById("AbjButton")
-  };
-
-  let currentOperator = "AND";
-  opButtons.AND.checked = true;
-
-  // --- RESULT METADATA & COPY LOGIC ---
-  const resultTitleEl = document.getElementById("resultItemTitle");
-  const resultCodeEl = document.getElementById("resultItemCode");
-  const copyBtn = document.getElementById("copyResultBtn");
-
-  function updateResultMeta(code, opKey) {
-    const item = getItemByCode(code);
-    if (resultTitleEl) {
-      resultTitleEl.textContent = item ? item.title : "Custom Alchemized Creation";
-    }
-    if (resultCodeEl) {
-      resultCodeEl.textContent = `Code: [${code}] (${opKey} Alchemy)`;
-    }
-  }
-
-  // Set up operator radio click listeners
-  Object.keys(opButtons).forEach(opKey => {
-    const radio = opButtons[opKey];
-    radio.addEventListener("change", () => {
-      if (radio.checked) {
-        currentOperator = opKey;
-        updateOperatorState();
-        clearOutput();
-      }
-    });
-  });
-
-  const equalsButton = document.getElementById("EqualsButton");
-
-  function isCodeComplete(card) {
-    if (!card) return false;
-    if (typeof card.isComplete === "function") {
-      return card.isComplete();
-    }
-    const val = card.inputElement ? card.inputElement.value.trim() : (card.code || "");
-    return val.length === 8;
-  }
-
-  function updateOperatorState() {
-    if (!equalsButton) return;
-    const canAlchemize = isCodeComplete(card1) && isCodeComplete(card2);
-
-    if (canAlchemize) {
-      equalsButton.src = "img/btn/alchemize-00.png";
-      equalsButton.classList.remove("disabled");
-      equalsButton.setAttribute("title", `Click to Alchemize using ${currentOperator}`);
-      equalsButton.setAttribute("tabindex", "0");
-    } else {
-      equalsButton.src = "img/btn/alchemize-02.png";
-      equalsButton.classList.add("disabled");
-      equalsButton.setAttribute("title", "Enter full 8-character codes on both cards to Alchemize");
-      equalsButton.setAttribute("tabindex", "-1");
-    }
-  }
 
   // Animation helper for button press visual reaction (alchemize-00.png -> alchemize-01.png -> alchemize-00.png)
   let animTimer = null;
