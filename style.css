@@ -717,6 +717,17 @@ body::after {
   text-align: center;
 }
 
+.appFooter a {
+  color: var(--skaia-blue-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.appFooter a:hover {
+  color: #0369a1;
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 860px) {
   .cardsContainer {
