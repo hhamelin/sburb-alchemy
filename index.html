@@ -2,196 +2,130 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Captcha Card Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sburb Captchalogue Card Alchemy Calculator</title>
+    <meta name="description" content="A Homestuck Sburb Captchalogue Card Alchemy Calculator. Calculate item codes using bitwise AND, OR, XOR, and ABJ operations.">
     <link href="style.css" rel="stylesheet">
-    <script src="alchemy.js" defer></script>
+    <script type="module" src="js/app.js"></script>
   </head>
   <body>
-      <div class="vbox">
-          <div class="hbox">
-            <div class="vbox cardTextWrap">
-              <div class="card" id="Card1">
-                <div class="item"></div>
-                <div class="holesGrid" id="HolesGrid1">
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                </div>
-              </div>
-              <div class="textBox">
-                <input class="textPut" id="TextPut1" placeholder="00000000" maxlength="8">
-                <div id="suggestions-container" class="suggestions"></div>
-              </div>
+    <div id="appRoot">
+      <!-- App Header -->
+      <header class="appHeader">
+        <h1 class="appTitle">
+          Sburb Alchemy Calculator
+        </h1>
+        <p class="appSubtitle">
+          Interactive 48-bit Captchalogue Card bitwise alchemy workbench inspired by Homestuck
+        </p>
+      </header>
+
+      <!-- Workbench Panel -->
+      <main class="workbenchPanel">
+        <div class="cardsContainer">
+          <!-- Card 1 Column -->
+          <div class="cardColumn">
+            <span class="cardLabel">Input Card 1</span>
+            <div class="card" id="Card1">
+              <div class="item"></div>
+              <div class="holesGrid" id="HolesGrid1"></div>
             </div>
-            <div class="opGrid">
-              <label class="radioWrap"><input type="radio" name="operator" id="AndButton"><span class="opBtn andBtn"></span></label>
-              <label class="radioWrap"><input type="radio" name="operator" id="OrButton"><span class="opBtn orBtn"></span></label>
-              <label class="radioWrap"><input type="radio" name="operator" id="XorButton"><span class="opBtn xorBtn"></span></label>
-              <label class="radioWrap"><input type="radio" name="operator" id="AbjButton"><span class="opBtn abjBtn"></span></label>
+            <div class="textBoxWrap">
+              <input class="textPut" id="TextPut1" placeholder="00000000" maxlength="35" autocomplete="off" name="sburb-code-1" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false">
             </div>
-            <div class="vbox cardTextWrap">
-              <div class="card" id="Card2">
-                <div class="item"></div>
-                <div class="holesGrid" id="HolesGrid2">
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                </div>
-              </div>
-              <div class="textBox">
-                <input class="textPut" id="TextPut2" placeholder="00000000" maxlength="8">
-              </div>
+          </div>
+
+          <!-- Operator Grid -->
+          <div class="opGrid">
+            <label class="radioWrap" title="Bitwise AND (&&)">
+              <input type="radio" name="operator" id="AndButton" checked>
+              <span class="opBtn andBtn"></span>
+            </label>
+            <label class="radioWrap" title="Bitwise OR (||)">
+              <input type="radio" name="operator" id="OrButton">
+              <span class="opBtn orBtn"></span>
+            </label>
+            <label class="radioWrap" title="Bitwise XOR (^^)">
+              <input type="radio" name="operator" id="XorButton">
+              <span class="opBtn xorBtn"></span>
+            </label>
+            <label class="radioWrap" title="Bitwise ABJ (- Abjure)">
+              <input type="radio" name="operator" id="AbjButton">
+              <span class="opBtn abjBtn"></span>
+            </label>
+          </div>
+
+          <!-- Card 2 Column -->
+          <div class="cardColumn">
+            <span class="cardLabel">Input Card 2</span>
+            <div class="card" id="Card2">
+              <div class="item"></div>
+              <div class="holesGrid" id="HolesGrid2"></div>
             </div>
-            <div class="eqSign"></div>
-            <div class="vbox cardTextWrap">
-              <div class="card" id="Card3">
-                <div class="item"></div>
-                <div class="holesGrid" id="HolesGrid3">
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                  <div class="hole"></div>
-                </div>
-              </div>
-              <div class="textBox">
-                <input class="textPut" id="TextPut3" maxlength="8" readonly="readonly" disabled>
+            <div class="textBoxWrap">
+              <input class="textPut" id="TextPut2" placeholder="00000000" maxlength="35" autocomplete="off" name="sburb-code-2" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false">
+            </div>
+          </div>
+
+          <!-- Equals Indicator -->
+          <div class="eqSign"></div>
+
+          <!-- Card 3 Output Column -->
+          <div class="cardColumn">
+            <span class="cardLabel">Alchemized Output</span>
+            <div class="card" id="Card3">
+              <div class="item"></div>
+              <div class="holesGrid" id="HolesGrid3"></div>
+            </div>
+            <div class="textBoxWrap">
+              <input class="textPut" id="TextPut3" maxlength="8" readonly="readonly" disabled>
             </div>
           </div>
         </div>
-        <img src="img/btn/EQ02.png" class="eqBtn" id="EqualsButton" tabindex="0">
-    </body>
+
+        <!-- Alchemize Button Row -->
+        <div class="alchemizeRow">
+          <img src="img/btn/alchemize-00.png" class="eqBtn" id="EqualsButton" tabindex="0" alt="Alchemize!" title="Click to Alchemize!">
+        </div>
+
+        <!-- Result Metadata & Copy Action -->
+        <div class="resultMetaCard">
+          <div class="resultInfo">
+            <div class="resultTitle" id="resultItemTitle">&mdash;</div>
+            <div class="resultCode" id="resultItemCode">Click Alchemize button to calculate</div>
+          </div>
+          <button type="button" class="actionBtn" id="copyResultBtn">Copy Result Code</button>
+        </div>
+      </main>
+
+      <!-- Preset Recipes & Catalog Section -->
+      <section class="sectionBlock">
+        <div class="sectionHeader">
+          <h2 class="sectionTitle">
+            Quick Alchemy Recipes
+          </h2>
+          <button type="button" class="actionBtn" id="toggleCatalogBtn">Browse Item Catalog</button>
+        </div>
+        <div class="presetList" id="presetRecipesList"></div>
+      </section>
+
+      <!-- Item Catalog Modal -->
+      <div class="modalOverlay" id="catalogModal">
+        <div class="modalCard">
+          <div class="modalHeader">
+            <h2 class="modalTitle">Sburb Item Catalog & Codes</h2>
+            <button type="button" class="modalCloseBtn" id="closeCatalogBtn" aria-label="Close catalog">&times;</button>
+          </div>
+          <div class="modalBody">
+            <div class="catalogGrid" id="catalogGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Footer -->
+      <footer class="appFooter">
+        <p>Sburb Alchemy Calculator &bull; Created by Haven Hamelin</p>
+      </footer>
+    </div>
+  </body>
 </html>
